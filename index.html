@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>초대장 미션 - 롯데캐피탈</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- 게임 시작 화면 -->
+        <div id="start-screen" class="screen active">
+            <div class="content">
+                <h1>🎉 초대장 미션 🎉</h1>
+                <p>모든 친구들에게 초대장을 전달하고 파티에 참석하세요!</p>
+                <button id="start-btn" class="btn">게임 시작</button>
+            </div>
+        </div>
+
+        <!-- 메인 게임 화면 -->
+        <div id="game-screen" class="screen">
+            <div id="game-info">
+                <div id="progress">초대 완료: <span id="invite-count">0</span> / <span id="total-npcs">4</span></div>
+                <div id="instructions">방향키로 이동하고 Enter로 초대장 전달!</div>
+            </div>
+            
+            <div id="game-area">
+                <div id="player" class="character"></div>
+                
+                <!-- NPC 캐릭터들 -->
+                <div id="npc-parent" class="npc" data-npc="parent">
+                    <div class="npc-character"></div>
+                    <div class="npc-label">부모님</div>
+                </div>
+                
+                <div id="npc-friend" class="npc" data-npc="friend">
+                    <div class="npc-character"></div>
+                    <div class="npc-label">친구</div>
+                </div>
+                
+                <div id="npc-teacher" class="npc" data-npc="teacher">
+                    <div class="npc-character"></div>
+                    <div class="npc-label">선생님</div>
+                </div>
+                
+                <div id="npc-colleague" class="npc" data-npc="colleague">
+                    <div class="npc-character"></div>
+                    <div class="npc-label">동료</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 파티 화면 -->
+        <div id="party-screen" class="screen">
+            <div class="content">
+                <h1>🎊 파티에 오신 것을 환영합니다! 🎊</h1>
+                <p>롯데캐피탈의 일원이 되기 위한 다짐을 적어주세요!</p>
+                <div class="input-group">
+                    <textarea id="promise-input" placeholder="여기에 다짐을 적어주세요..." maxlength="100"></textarea>
+                    <button id="submit-promise" class="btn">다짐 제출</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 결과 화면 -->
+        <div id="result-screen" class="screen">
+            <div class="content">
+                <h1>🎉 축하합니다! 🎉</h1>
+                <div class="result-message">
+                    <p class="congrats">당신은 롯데캐피탈의 일원이 되었습니다!</p>
+                    <div class="promise-display">
+                        <h3>당신의 다짐:</h3>
+                        <p id="user-promise"></p>
+                    </div>
+                </div>
+                <button id="restart-btn" class="btn">다시 시작</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html> 
