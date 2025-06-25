@@ -195,59 +195,45 @@ class InviteMissionGame {
     
     tryInvite() {
         const playerRect = {
-            x: this.player.x - 30,
-            y: this.player.y - 30,
-            width: 60,
-            height: 60
+            x: this.player.x - 35,
+            y: this.player.y - 35,
+            width: 70,
+            height: 70
         };
-        
-        // 디버깅: 플레이어 위치 출력
-        console.log('Player position:', this.player.x, this.player.y);
-        console.log('Player rect:', playerRect);
         
         Object.keys(this.npcs).forEach(npcKey => {
             const npc = this.npcs[npcKey];
             if (npc.invited) return;
             
-            // CSS 위치에 맞춰 NPC 위치 계산
+            // 고정형 위치 (768x768 기준, 120px 안쪽, 중심 보정)
             let npcX, npcY;
-            
             switch(npcKey) {
                 case 'parent':
-                    npcX = this.gameAreaWidth * 0.2; // left: 20%
-                    npcY = this.gameAreaHeight * 0.2; // top: 20%
+                    npcX = 120 + 35;
+                    npcY = 120 + 35;
                     break;
                 case 'friend':
-                    npcX = this.gameAreaWidth * 0.8; // right: 20% -> left: 80%
-                    npcY = this.gameAreaHeight * 0.2; // top: 20%
+                    npcX = 768 - 120 - 35;
+                    npcY = 120 + 35;
                     break;
                 case 'teacher':
-                    npcX = this.gameAreaWidth * 0.2; // left: 20%
-                    npcY = this.gameAreaHeight * 0.8; // bottom: 20% -> top: 80%
+                    npcX = 120 + 35;
+                    npcY = 768 - 120 - 35;
                     break;
                 case 'colleague':
-                    npcX = this.gameAreaWidth * 0.8; // right: 20% -> left: 80%
-                    npcY = this.gameAreaHeight * 0.8; // bottom: 20% -> top: 80%
+                    npcX = 768 - 120 - 35;
+                    npcY = 768 - 120 - 35;
                     break;
                 default:
                     return;
             }
-            
-            // 더 관대한 충돌 범위 (80px x 80px)
             const npcRect = {
-                x: npcX - 40,
-                y: npcY - 40,
-                width: 80,
-                height: 80
+                x: npcX - 35,
+                y: npcY - 35,
+                width: 70,
+                height: 70
             };
-            
-            // 디버깅: NPC 위치 출력
-            console.log(`NPC ${npcKey} position:`, npcX, npcY);
-            console.log(`NPC ${npcKey} rect:`, npcRect);
-            
-            // 충돌 체크
             if (this.isColliding(playerRect, npcRect)) {
-                console.log(`Collision detected with ${npcKey}!`);
                 this.inviteNPC(npcKey);
             }
         });
